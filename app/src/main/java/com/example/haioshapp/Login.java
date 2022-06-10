@@ -7,15 +7,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Register extends AppCompatActivity {
+public class Login extends AppCompatActivity {
+    // this link may be useful
+    //https://www.youtube.com/watch?v=sOJRJtM_iu0
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_login);
 
         // pass chat screen
-        Button btn_login = findViewById(R.id.register_button);
+        Button btn_login = findViewById(R.id.lg_button);
         btn_login.setOnClickListener(v->{
             // need to add validazia
             Intent intent = new Intent(this,Chats.class);
@@ -23,9 +25,9 @@ public class Register extends AppCompatActivity {
         });
 
         // pass to the register page
-        TextView pass_register = findViewById(R.id.regist_pass_login);
+        TextView pass_register = findViewById(R.id.lg_pass_register);
         pass_register.setOnClickListener(v->{
-            Intent intent = new Intent(this,Login.class);
+            Intent intent = new Intent(this,Register.class);
             startActivity(intent);
         });
     }

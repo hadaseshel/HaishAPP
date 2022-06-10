@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".MainActivity">
+    tools:context=".Login">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -42,7 +42,7 @@
                 android:typeface="serif" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/lg_username_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -72,7 +72,7 @@
                 android:typeface="serif" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/lg_editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -85,7 +85,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/lg_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -96,14 +96,24 @@
             android:typeface="serif" />
 
         <TextView
-            android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginHorizontal="10dp"
-            android:text="@string/lg_unregistered_you_can_click_here_to_register"
+            android:text="@string/lg_unregistered"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            android:typeface="serif" />
+        <TextView
+            android:id="@+id/lg_pass_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/lg_click_here_to_register"
             android:textSize="18dp"
+            android:textColor="@color/purple_3"
+            android:textStyle="italic"
             android:layout_margin="10dp"
             android:typeface="serif" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

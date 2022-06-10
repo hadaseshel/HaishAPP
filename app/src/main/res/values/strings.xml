@@ -5,5 +5,15 @@
     <string name="lg_user_name">User Name</string>
     <string name="ls_password">Password</string>
     <string name="lg_log_in">Log in</string>
-    <string name="lg_unregistered_you_can_click_here_to_register">Unregistered? You can click here to register</string>
+    <string name="lg_unregistered_you_can_click_here_to_register">Unregistered? Click here to register</string>
+    <string name="rg_register">Register</string>
+    <string name="hioosh_name">Hioosh</string>
+    <string name="chat_chat_list">Chat list</string>
+    <string name="lg_unregistered">Unregistered?</string>
+    <string name="lg_click_here_to_register"><u>Click here to register</u></string>
+    <string name="register_already_registered">Already registered?</string>
+    <string name="register_click_here_to_log_in"><u>Click here to log in</u></string>
+    <string name="register_nick_name">Nick Name</string>
+    <string name="register_enter_nick_name">Enter nick name</string>
+    <string name="register_confirm_password">Confirm Password</string>
 </resources>
