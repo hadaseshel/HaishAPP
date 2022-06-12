@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".Register">
-
+    tools:context=".NewChat">
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -19,15 +18,10 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="20dp">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="171dp"
-            app:srcCompat="@drawable/logo" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -37,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:text="@string/lg_user_name"
+                android:text="@string/new_chat_contact_name"
                 android:textSize="24dp"
                 android:typeface="serif" />
 
@@ -48,7 +42,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:background="@color/green_light"
                 android:ems="10"
-                android:hint="@string/lg_enter_user_name"
+                android:hint="@string/new_chat_enter_contact_name"
                 android:inputType="textPersonName"
                 android:textSize="18dp"
                 android:typeface="serif" />
@@ -57,7 +51,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -87,59 +81,29 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:text="@string/ls_password"
+                android:text="@string/new_chat_server"
                 android:textSize="24dp"
                 android:typeface="serif" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/editTextTextPersonName8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:background="@color/green_light"
                 android:ems="10"
-                android:hint="@string/lg_enter_password"
-                android:inputType="textPassword"
-                android:textSize="18dp"
-                android:typeface="serif" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:text="@string/register_confirm_password"
-                android:textSize="24dp"
-                android:typeface="serif" />
-
-            <EditText
-                android:id="@+id/editTextTextPassword3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:background="@color/green_light"
-                android:ems="10"
-                android:hint="@string/lg_enter_password"
-                android:inputType="textPassword"
+                android:hint="@string/new_chat_enter_server"
+                android:inputType="textPersonName"
                 android:textSize="18dp"
                 android:typeface="serif" />
         </LinearLayout>
@@ -149,30 +113,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="8dp"
+            android:layout_margin="10dp"
             android:backgroundTint="@color/purple_3"
-            android:text="@string/rg_register"
+            android:text="@string/new_chat_add_a_contact"
             android:textSize="22dp"
             android:typeface="serif" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/register_already_registered"
-            android:textSize="20dp"
-            android:textStyle="bold|italic"
-            android:typeface="serif" />
-        <TextView
-            android:id="@+id/regist_pass_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/register_click_here_to_log_in"
-            android:textSize="18dp"
-            android:textColor="@color/purple_3"
-            android:textStyle="italic"
-            android:layout_margin="10dp"
-            android:typeface="serif" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

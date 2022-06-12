@@ -16,4 +16,10 @@
     <string name="register_nick_name">Nick Name</string>
     <string name="register_enter_nick_name">Enter nick name</string>
     <string name="register_confirm_password">Confirm Password</string>
+    <string name="new_chat_add_a_contact">Add a contact</string>
+    <string name="new_chat_contact_name">Contact Name</string>
+    <string name="new_chat_enter_contact_name">Enter Contact Name</string>
+    <string name="new_chat_server">Server</string>
+    <string name="new_chat_enter_server">Enter Server</string>
+    <string name="single_chat_enter_message">Enter Message</string>
 </resources>
