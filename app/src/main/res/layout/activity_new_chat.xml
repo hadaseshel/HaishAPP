@@ -36,7 +36,7 @@
                 android:typeface="serif" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/new_chat_contact_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -57,7 +57,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/new_chat_nickname1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -66,7 +66,7 @@
                 android:typeface="serif" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName1"
+                android:id="@+id/new_chat_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -96,7 +96,7 @@
                 android:typeface="serif" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName8"
+                android:id="@+id/new_chat_server"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -109,7 +109,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/register_button"
+            android:id="@+id/new_chat_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

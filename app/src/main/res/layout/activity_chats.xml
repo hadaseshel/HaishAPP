@@ -10,9 +10,9 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="20dp"
-        android:background="@color/green"
+        android:background="@color/green_light"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,6 +20,7 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
+            android:background="@color/green"
             android:layout_height="wrap_content">
 
             <TextView
@@ -43,14 +44,9 @@
                 android:layout_alignParentEnd="true"/>
 
         </RelativeLayout>
-
-        <ListView
-            android:id="@+id/chat_listview"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chat_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="24sp"
-            android:typeface="serif" >
-
-        </ListView>
+            android:layout_height="match_parent" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

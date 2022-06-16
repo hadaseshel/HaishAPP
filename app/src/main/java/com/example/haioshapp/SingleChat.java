@@ -22,7 +22,7 @@ public class SingleChat extends AppCompatActivity {
         list.add("how are you?");
         list.add("fine");
 
-        ListView listView = findViewById(R.id.singlechat_listview);
+        ListView listView = findViewById(R.id.singlechat_recyclerView);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,list);
         listView.setAdapter(arrayAdapter);
