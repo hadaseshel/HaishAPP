@@ -1,6 +1,7 @@
 package com.example.haioshapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.haioshapp.R;
+import com.example.haioshapp.SingleChat;
 import com.example.haioshapp.entities.Contact;
 
 import java.util.List;
@@ -47,6 +49,13 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             holder.tvDateLastMessage.setText(current.getLastdate());
             holder.tvNameContact.setText(current.getNickname());
             holder.tvLastMessage.setText(current.getLast());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), SingleChat.class);
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 

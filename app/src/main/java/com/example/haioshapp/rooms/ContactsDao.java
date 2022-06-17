@@ -19,9 +19,12 @@ public interface ContactsDao {
     @Delete
     void delete(Contact contact);
 
+    @Query("DELETE FROM contact")
+    void deleteAll();
+
     @Query("SELECT * FROM contact")
-    List<Contact> index_contacts();
+    List<Contact> index();
 
     @Query("SELECT * FROM contact WHERE id= :id")
-    Contact get_contact(String id);
+    Contact get(String id);
 }

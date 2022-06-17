@@ -10,71 +10,62 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.haioshapp.adapters.ContactListAdapter;
 import com.example.haioshapp.entities.Contact;
+import com.example.haioshapp.rooms.AppDB;
+import com.example.haioshapp.rooms.ContactsDao;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Chats extends AppCompatActivity {
-    List<Contact> contacts;
-//    private AppDB db;
-//    private ContactsDao contactsDao;
-//    private MessagesDao messagesDao;
-//    private ArrayAdapter<Contact> arrayAdapter;
+    List<Contact> contacts; // the contacts list
+    private AppDB db; // the DB of the app
+    private ContactsDao contactsDao; // by this object we will add contact
+    ContactListAdapter adapter; // adapter for the spacial view of each contact
+    private RecyclerView recyclerView; // the recycle view of the contacts list
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chats);
-//
-//        db = Room.databaseBuilder(getApplicationContext(),AppDB.class,"AppDB")
-//                .allowMainThreadQueries().build();
-//        contactsDao = db.contactsDao();
-//        messagesDao = db.messagesDao();
 
-        //statick list
-       // contactsDao.insert(new Contact("hadas","hdasi","server1"));
-        //contactsDao.insert(new Contact("hail","haliosh","server1"));
-       // contactsDao.insert(new Contact("ortal","ortalosh","server1"));
+        db = AppDB.getDB(this);
+        contactsDao = db.contactsDao();
 
-       // contacts = contactsDao.index_contacts();
-        contacts = new ArrayList<Contact>();
-        contacts.add(new Contact("hadas","hadasi","server1","hey","15.12.22"));
-        contacts.add(new Contact("hail","hail","server1","baaa","16.12.22"));
-        contacts.add(new Contact("ortal","ortal","server1","loo","17.12.22"));
-        contacts.add(new Contact("SHIRA","shira","server1","loo","18.12.22"));
+        // insert to the room contacts
+//        contactsDao.insert(new Contact("aaa","aaa","server1","hey","15.12.22"));
+//        contactsDao.insert(new Contact("bbb","bbb","server1","baaa","16.12.22"));
+//        contactsDao.insert(new Contact("ccc","ccc","server1","loo","17.12.22"));
+        // delete the contacts list from DB
+       //contactsDao.deleteAll();
+
         String user_id;
         if(getIntent().getExtras()!=null){
             user_id = getIntent().getExtras().getString("user_id");
         }
 
-//        ListView listView = findViewById(R.id.chat_listview);
-//        arrayAdapter = new ArrayAdapter<Contact>(this,
-//                android.R.layout.simple_list_item_1,contacts);
-//        listView.setAdapter(arrayAdapter);
+        contacts = new ArrayList<>(); // create new list
+        recyclerView = findViewById(R.id.chat_recyclerView); //get the recycle view
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)); //bind the recycle view a view
 
-        RecyclerView recyclerView = findViewById(R.id.chat_recyclerView);
-        final ContactListAdapter adapter = new ContactListAdapter(this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        // set contacts list
-        adapter.setContacts(contacts);
-
-        // pass the add chat screen
+        // pass to the add chat screen
         ImageButton btn_add_chat = findViewById(R.id.add_chat_icon);
         btn_add_chat.setOnClickListener(v->{
-            // need to add validazia
             Intent intent = new Intent(this,NewChat.class);
-            //intent.putExtra("contactsDao",contactsDao);
             startActivity(intent);
         });
-
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        contacts.clear();
-//        contacts.addAll(contactsDao.index_contacts());
-//        arrayAdapter.notifyDataSetChanged();
-//    }
+    // refresh the contact list by the room
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // get the contacts lisr
+        contacts = contactsDao.index();
+        // create adapter
+        adapter = new ContactListAdapter(this);
+        // set the list on the adapter
+        adapter.setContacts(contacts);
+        // set the adapter on the recycle view
+        recyclerView.setAdapter(adapter);
+    }
 }
