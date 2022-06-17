@@ -22,4 +22,6 @@
     <string name="new_chat_server">Server</string>
     <string name="new_chat_enter_server">Enter Server</string>
     <string name="single_chat_enter_message">Enter Message</string>
+    <string name="register_upload_a_photo">Upload a photo</string>
+    <string name="register_upload_image">Upload</string>
 </resources>

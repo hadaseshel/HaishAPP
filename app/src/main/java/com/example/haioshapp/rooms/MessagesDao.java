@@ -21,6 +21,9 @@ public interface MessagesDao extends Serializable {
     @Delete
     void delete(Message message);
 
+    @Query("DELETE FROM message")
+    void deleteAll();
+
     @Query("SELECT * FROM message")
     List<Message> index();
 
