@@ -31,7 +31,7 @@ public class Chats extends AppCompatActivity {
 
         db = AppDB.getDB(this);
         contactsDao = db.contactsDao();
-       // contactsDao.deleteAll();
+        //contactsDao.deleteAll();
 
         // insert to the room contacts
 //        contactsDao.insert(new Contact("aaa","aaa","server1","hey","15.12.22"));

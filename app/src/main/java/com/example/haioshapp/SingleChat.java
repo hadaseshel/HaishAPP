@@ -33,7 +33,7 @@ public class SingleChat extends AppCompatActivity {
         recyclerView = findViewById(R.id.singlechat_recyclerView); //get the recycle view
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); //bind the recycle view a view
         contactId = getIntent().getExtras().getString("contact_id");
-       // messagesDao.deleteAll(); //delet all
+//        //messagesDao.deleteAll(); //delet all
 //        messagesDao.insert(new Message("gvdv",contactId,"heyy","12.12.22",true));
 //        messagesDao.insert(new Message("gvdv1",contactId,"bye","13.12.22",false));
 //        list = new ArrayList<String>();
