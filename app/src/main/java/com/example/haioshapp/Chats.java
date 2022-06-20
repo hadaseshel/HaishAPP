@@ -18,6 +18,7 @@ import java.util.List;
 
 public class Chats extends AppCompatActivity {
     List<Contact> contacts; // the contacts list
+    private String userID;
     private AppDB db; // the DB of the app
     private ContactsDao contactsDao; // by this object we will add contact
     ContactListAdapter adapter; // adapter for the spacial view of each contact
@@ -30,6 +31,7 @@ public class Chats extends AppCompatActivity {
 
         db = AppDB.getDB(this);
         contactsDao = db.contactsDao();
+       // contactsDao.deleteAll();
 
         // insert to the room contacts
 //        contactsDao.insert(new Contact("aaa","aaa","server1","hey","15.12.22"));
@@ -38,10 +40,7 @@ public class Chats extends AppCompatActivity {
         // delete the contacts list from DB
        //contactsDao.deleteAll();
 
-        String user_id;
-        if(getIntent().getExtras()!=null){
-            user_id = getIntent().getExtras().getString("user_id");
-        }
+        userID = getIntent().getExtras().getString("user_id");
 
         contacts = new ArrayList<>(); // create new list
         recyclerView = findViewById(R.id.chat_recyclerView); //get the recycle view
@@ -51,6 +50,7 @@ public class Chats extends AppCompatActivity {
         ImageButton btn_add_chat = findViewById(R.id.add_chat_icon);
         btn_add_chat.setOnClickListener(v->{
             Intent intent = new Intent(this,NewChat.class);
+            intent.putExtra("user_id",userID);
             startActivity(intent);
         });
     }
@@ -59,8 +59,8 @@ public class Chats extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // get the contacts lisr
-        contacts = contactsDao.index();
+        // get the contacts list
+        contacts = contactsDao.getContactOfUser(userID);
         // create adapter
         adapter = new ContactListAdapter(this);
         // set the list on the adapter

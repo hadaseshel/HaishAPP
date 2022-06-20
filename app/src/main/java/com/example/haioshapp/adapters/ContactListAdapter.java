@@ -53,6 +53,8 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), SingleChat.class);
+                    intent.putExtra("user_id",current.getUserId());
+                    intent.putExtra("contact_id",current.getContactId());
                     v.getContext().startActivity(intent);
                 }
             });

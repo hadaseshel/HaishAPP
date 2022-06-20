@@ -9,11 +9,10 @@ import androidx.room.Update;
 import com.example.haioshapp.entities.Contact;
 import com.example.haioshapp.entities.Message;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Dao
-public interface MessagesDao extends Serializable {
+public interface MessagesDao {
     @Insert
     void insert(Message message);
     @Update
@@ -29,4 +28,7 @@ public interface MessagesDao extends Serializable {
 
     @Query("SELECT * FROM message WHERE id= :id")
     Contact get(String id);
+
+    @Query("SELECT * FROM message WHERE contactKey= :contactKey")
+    List<Message> getMessagesOfContact(String contactKey);
 }

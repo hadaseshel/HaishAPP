@@ -9,12 +9,15 @@ public class Message {
     @NonNull
     @PrimaryKey(autoGenerate=false)
     private String id;
+    private String contactKey;
     private String content;
     private String datecreate;
     private boolean sent;
 
-    public Message(String id, String content, String datecreate, boolean sent) {
+
+    public Message(String id,String contactKey, String content, String datecreate, boolean sent) {
         this.id = id;
+        this.contactKey = contactKey;
         this.content = content;
         this.datecreate = datecreate;
         this.sent = sent;
@@ -26,6 +29,14 @@ public class Message {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getContactKey() {
+        return contactKey;
+    }
+
+    public void setContactKey(String contactKey) {
+        this.contactKey = contactKey;
     }
 
     public String getContent() {
@@ -56,6 +67,7 @@ public class Message {
     public String toString() {
         return "Message{" +
                 "id='" + id + '\'' +
+                ", contactKey='" + contactKey + '\'' +
                 ", content='" + content + '\'' +
                 ", datecreate='" + datecreate + '\'' +
                 ", sent=" + sent +

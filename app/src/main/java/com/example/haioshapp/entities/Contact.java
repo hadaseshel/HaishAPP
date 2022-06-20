@@ -10,33 +10,43 @@ public class Contact {
     @NonNull
     @PrimaryKey(autoGenerate=false)
     private String id;
+    private String contactId;
+    private String userId;
     private String nickname;
     private String server;
     private String last;
     private String lastdate;
 
+
     public Contact(){
         this.id = null;
+        this.contactId = null;
+        this.userId = null;
         this.nickname =null;
         this.server = null;
         this.last = null;
         this.lastdate = null;
     }
     @Ignore
-    public Contact(String id, String nickname, String server, String last, String lastdate) {
+    public Contact(String id,String contactId, String userId, String nickname, String server) {
         this.id = id;
-        this.nickname = nickname;
-        this.server = server;
-        this.last = last;
-        this.lastdate = lastdate;
-    }
-    @Ignore
-    public Contact(String id, String nickname, String server) {
-        this.id = id;
+        this.contactId = contactId;
+        this.userId = userId;
         this.nickname = nickname;
         this.server = server;
         this.last = null;
         this.lastdate = null;
+    }
+
+    @Ignore
+    public Contact(@NonNull String id, String contactId, String userId, String nickname, String server, String last, String lastdate) {
+        this.id = id;
+        this.contactId = contactId;
+        this.userId = userId;
+        this.nickname = nickname;
+        this.server = server;
+        this.last = last;
+        this.lastdate = lastdate;
     }
 
     public String getId() {
@@ -79,10 +89,30 @@ public class Contact {
         this.lastdate = lastdate;
     }
 
+
+
+    public String getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(String contactId) {
+        this.contactId = contactId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
-        return "Contacts{" +
+        return "Contact{" +
                 "id='" + id + '\'' +
+                ", contactId='" + contactId + '\'' +
+                ", userId='" + userId + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", server='" + server + '\'' +
                 ", last='" + last + '\'' +

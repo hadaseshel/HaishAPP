@@ -16,6 +16,7 @@ import java.util.List;
 
 public class SingleChat extends AppCompatActivity {
     List<Message> messages; // the message list
+    private String contactId;
     private AppDB db; // the DB of the app
     private MessagesDao messagesDao; // by this object we will add contact
     MessageListAdapter adapter; // adapter for the spacial view of each contact
@@ -31,11 +32,10 @@ public class SingleChat extends AppCompatActivity {
         messages = new ArrayList<>(); // create new list
         recyclerView = findViewById(R.id.singlechat_recyclerView); //get the recycle view
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); //bind the recycle view a view
-
-        //messagesDao.deleteAll(); delet all
-//        messagesDao.insert(new Message("gvdv","heyy","12.12.22",true));
-//        messagesDao.insert(new Message("gvdv1","bye","13.12.22",true));
-//        messagesDao.insert(new Message("gvdv1","loo","14.12.22",true));
+        contactId = getIntent().getExtras().getString("contact_id");
+       // messagesDao.deleteAll(); //delet all
+//        messagesDao.insert(new Message("gvdv",contactId,"heyy","12.12.22",true));
+//        messagesDao.insert(new Message("gvdv1",contactId,"bye","13.12.22",false));
 //        list = new ArrayList<String>();
 //        list.add("hi");
 //        list.add("how are you?");
@@ -50,8 +50,8 @@ public class SingleChat extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // get the contacts lisr
-        messages = messagesDao.index();
+        // get the contacts list
+        messages = messagesDao.getMessagesOfContact(contactId);
         // create adapter
         adapter = new MessageListAdapter(this);
         // set the list on the adapter

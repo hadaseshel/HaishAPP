@@ -27,4 +27,7 @@ public interface ContactsDao {
 
     @Query("SELECT * FROM contact WHERE id= :id")
     Contact get(String id);
+
+    @Query("SELECT * FROM contact WHERE userId= :userId")
+    List<Contact> getContactOfUser(String userId);
 }

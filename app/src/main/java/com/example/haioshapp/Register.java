@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +26,8 @@ public class Register extends AppCompatActivity {
         btn_login.setOnClickListener(v->{
             // need to add validazia
             Intent intent = new Intent(this,Chats.class);
+            EditText user_id = findViewById(R.id.register_userid);
+            intent.putExtra("user_id",user_id.toString());
             startActivity(intent);
         });
 
