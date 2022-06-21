@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.List;
+
 @Entity
 public class Contact {
     @NonNull
@@ -12,38 +14,54 @@ public class Contact {
     private String id;
     private String contactId;
     private String userId;
-    private String nickname;
+    private String name;
     private String server;
     private String last;
     private String lastdate;
-
+    private String image;
+    @Ignore
+    private List<Message> chat;
 
     public Contact(){
         this.id = null;
         this.contactId = null;
         this.userId = null;
-        this.nickname =null;
+        this.name =null;
         this.server = null;
         this.last = null;
         this.lastdate = null;
+        this.image = null;
+        this.chat = null;
     }
     @Ignore
-    public Contact(String id,String contactId, String userId, String nickname, String server) {
+    public Contact(String id, String name, String server,String last, String lastdate,String image,List<Message> chat) {
+        this.id = id;
+        this.contactId = null;
+        this.userId = null;
+        this.name = name;
+        this.server = server;
+        this.last = last;
+        this.lastdate = lastdate;
+        this.image = image;
+        this.chat = chat;
+    }
+    @Ignore
+    public Contact(String id,String contactId, String userId, String name, String server) {
         this.id = id;
         this.contactId = contactId;
         this.userId = userId;
-        this.nickname = nickname;
+        this.name = name;
         this.server = server;
         this.last = null;
         this.lastdate = null;
     }
 
     @Ignore
-    public Contact(@NonNull String id, String contactId, String userId, String nickname, String server, String last, String lastdate) {
+    public Contact(@NonNull String id, String contactId, String userId, String name, String server, String last, String lastdate) {
         this.id = id;
         this.contactId = contactId;
         this.userId = userId;
-        this.nickname = nickname;
+        this.name = name;
         this.server = server;
         this.last = last;
         this.lastdate = lastdate;
@@ -57,12 +75,12 @@ public class Contact {
         this.id = id;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getName() {
+        return name;
     }
 
-    public void setNickname(String name) {
-        this.nickname = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getServer() {
@@ -89,8 +107,6 @@ public class Contact {
         this.lastdate = lastdate;
     }
 
-
-
     public String getContactId() {
         return contactId;
     }
@@ -113,10 +129,26 @@ public class Contact {
                 "id='" + id + '\'' +
                 ", contactId='" + contactId + '\'' +
                 ", userId='" + userId + '\'' +
-                ", nickname='" + nickname + '\'' +
+                ", nickname='" + name + '\'' +
                 ", server='" + server + '\'' +
                 ", last='" + last + '\'' +
                 ", lastdate='" + lastdate + '\'' +
                 '}';
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public List<Message> getChat() {
+        return chat;
+    }
+
+    public void setChat(List<Message> chat) {
+        this.chat = chat;
     }
 }

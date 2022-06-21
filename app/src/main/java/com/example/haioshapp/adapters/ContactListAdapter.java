@@ -47,7 +47,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         if(contacts!=null){
             final Contact current = contacts.get(position);
             holder.tvDateLastMessage.setText(current.getLastdate());
-            holder.tvNameContact.setText(current.getNickname());
+            holder.tvNameContact.setText(current.getName());
             holder.tvLastMessage.setText(current.getLast());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
