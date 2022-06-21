@@ -3,13 +3,13 @@ package com.example.haioshapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.haioshapp.adapters.ContactListAdapter;
+import com.example.haioshapp.api.UserAPI;
 import com.example.haioshapp.entities.Contact;
 import com.example.haioshapp.rooms.AppDB;
 import com.example.haioshapp.rooms.ContactsDao;
@@ -17,9 +17,13 @@ import com.example.haioshapp.rooms.ContactsDao;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Chats extends AppCompatActivity {
     List<Contact> contacts; // the contacts list
-    private ImageView imageview;
+    List<Contact> contacts_from_server;
     private String userID;
     private AppDB db; // the DB of the app
     private ContactsDao contactsDao; // by this object we will add contact
@@ -30,10 +34,10 @@ public class Chats extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chats);
-
+        userID = getIntent().getExtras().getString("user_id");
         db = AppDB.getDB(this);
         contactsDao = db.contactsDao();
-        //contactsDao.deleteAll();
+
 
         // insert to the room contacts
 //        contactsDao.insert(new Contact("aaa","aaa","server1","hey","15.12.22"));
@@ -41,8 +45,45 @@ public class Chats extends AppCompatActivity {
 //        contactsDao.insert(new Contact("ccc","ccc","server1","loo","17.12.22"));
         // delete the contacts list from DB
        //contactsDao.deleteAll();
+        UserAPI userAPI = new UserAPI();
+        Call<List<Contact>> call = userAPI.webServiceAPI.getContacts(userID);
+        call.enqueue(new Callback<List<Contact>>() {
+            @Override
+            public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
+                contacts_from_server = response.body();
+                this.erazeRoomAndUpdateRoom();
+            }
 
-        userID = getIntent().getExtras().getString("user_id");
+            private void erazeRoomAndUpdateRoom() {
+                // eraze the room
+                contactsDao.deleteAll();
+                for(Contact contact:contacts_from_server){
+                    Contact new_contact = new Contact();
+                    new_contact.setContactId(contact.getId());
+                    new_contact.setServer(contact.getServer());
+                    new_contact.setName(contact.getName());
+                    new_contact.setImage(contact.getImage());
+                    new_contact.setChat(contact.getChat());
+                    new_contact.setLast(contact.getLast());
+                    new_contact.setLastdate(contact.getLastdate());
+                    new_contact.setUserId(userID);
+                    new_contact.setId(userID +contact.getId());
+                    contactsDao.insert(new_contact);
+                }
+                // get the contacts list
+                contacts = contactsDao.getContactOfUser(userID);
+                // create adapter
+                adapter = new ContactListAdapter(Chats.this);
+                // set the list on the adapter
+                adapter.setContacts(contacts);
+                // set the adapter on the recycle view
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Contact>> call, Throwable t) {
+            }
+        });
 
         contacts = new ArrayList<>(); // create new list
         recyclerView = findViewById(R.id.chat_recyclerView); //get the recycle view
