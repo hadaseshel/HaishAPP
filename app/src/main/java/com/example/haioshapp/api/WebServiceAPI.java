@@ -14,5 +14,5 @@ public interface WebServiceAPI {
     Call<List<User>> getUsers();
 
     @POST("users")
-    Call<Void> creatUser(@Body User user);
+    Call<Void> createUser(@Body User user);
 }

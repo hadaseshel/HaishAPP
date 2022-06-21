@@ -36,4 +36,18 @@ public class UserAPI {
             }
         });
     }
+    public void post(User user){
+        Call<Void> call = webServiceAPI.createUser(user);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+              // in response  
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+               // in failer 
+            }
+        });
+    }
 }

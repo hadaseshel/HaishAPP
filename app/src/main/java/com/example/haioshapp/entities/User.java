@@ -3,6 +3,7 @@ package com.example.haioshapp.entities;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,14 @@ public class User {
         this.image = image;
         this.server = server;
         this.chat = chat;
+    }
+    public User(@NonNull String id, String nickname, String password, String server) {
+        this.id = id;
+        this.password = password;
+        this.nickname = nickname;
+        this.image = "";
+        this.server = server;
+        this.chat = new ArrayList<Contact>();
     }
 
     @NonNull

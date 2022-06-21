@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -58,15 +57,14 @@ public class Login extends AppCompatActivity {
                 // pass the chat screen only if the user is exist in server
                 if(user_id_string.equals(current_user_id) && current_user_pass.equals(user_pass_string)){
                     move_to_intent_flag = 1;
+                    TextView tv = (TextView)findViewById(R.id.login_error);
+                    tv.setText("");
                     startActivity(intent);
                 }
             }
-//            Toast t = Toast.makeText(getApplicationContext(),
-//                    "The username or password are incorrect",Toast.LENGTH_LONG);
             if(move_to_intent_flag==0){
-                //t.show();
-                Toast.makeText(getApplicationContext(),
-                        "The username or password are incorrect", Toast.LENGTH_LONG).show();
+               TextView tv = (TextView)findViewById(R.id.login_error);
+               tv.setText("The username or password are incorrect");
             }
         });
 

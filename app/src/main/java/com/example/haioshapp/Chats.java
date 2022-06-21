@@ -3,6 +3,7 @@ package com.example.haioshapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class Chats extends AppCompatActivity {
     List<Contact> contacts; // the contacts list
+    private ImageView imageview;
     private String userID;
     private AppDB db; // the DB of the app
     private ContactsDao contactsDao; // by this object we will add contact

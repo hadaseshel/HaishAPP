@@ -12,14 +12,37 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.haioshapp.api.UserAPI;
+import com.example.haioshapp.entities.User;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Register extends AppCompatActivity {
     private final int GALLERY_REQ_CODE = 1000;
     private ImageView imageView;
+    private List<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        // get the users from the server
+        UserAPI userAPI = new UserAPI();
+        Call<List<User>> call = userAPI.webServiceAPI.getUsers();
+        call.enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                users = response.body();
+            }
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+            }
+        });
 
         // pass chat screen
         Button btn_login = findViewById(R.id.register_button);
@@ -27,7 +50,43 @@ public class Register extends AppCompatActivity {
             // need to add validazia
             Intent intent = new Intent(this,Chats.class);
             EditText user_id = findViewById(R.id.register_userid);
-            intent.putExtra("user_id",user_id.toString());
+            String user_id_string = user_id.getText().toString();
+            EditText user_pass = findViewById(R.id.register_pass);
+            String user_pass_string = user_pass.getText().toString();
+            EditText user_pass_conf = findViewById(R.id.register_pass_confirm);
+            String user_pass_conf_string = user_pass_conf.getText().toString();
+            EditText user_name = findViewById(R.id.register_name);
+            String user_name_string = user_name.getText().toString();
+
+            intent.putExtra("user_id",user_id_string);
+            // check password identical to confirm
+            if(!user_pass_string.equals(user_pass_conf_string)){
+                TextView tv = (TextView)findViewById(R.id.register_error);
+                tv.setText("The password and password confirmation are not the same");
+                return;
+            }
+             //check the strong of the password
+            String characters = ".*[a-z].*";
+            String numbers = ".*[0-9].*";
+            if(!(user_pass_string.matches(characters)&&user_pass_string.matches(numbers))){
+                TextView tv = (TextView)findViewById(R.id.register_error);
+                tv.setText("The password must contain letters and numbers");
+                return;
+            }
+            for(User user:users){
+                String current_user_id = user.getId();
+                // pass the chat screen only if the user is exist in server
+                if(user_id_string.equals(current_user_id)){
+                    TextView tv = (TextView)findViewById(R.id.register_error);
+                    tv.setText("The username you entered is saved in the system, please select another username");
+                    return;
+                }
+            }
+            // need to regiset the user
+            TextView tv = (TextView)findViewById(R.id.register_error);
+            tv.setText("");
+            User user = new User(user_id_string,user_name_string,user_pass_string,"http://localhost:5034/");
+            userAPI.post(user);
             startActivity(intent);
         });
 
