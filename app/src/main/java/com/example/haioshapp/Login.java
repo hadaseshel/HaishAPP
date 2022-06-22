@@ -18,8 +18,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Login extends AppCompatActivity {
-    // this link may be useful
-    //https://www.youtube.com/watch?v=sOJRJtM_iu0
     private List<User> users;
     private String server = "10.0.2.2:5034";
 
@@ -27,6 +25,9 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        if(getIntent().getExtras()!= null){
+            server = getIntent().getExtras().getString("user_server");
+        }
 
         // get the users from the server
         UserAPI userAPI = new UserAPI(server);
@@ -53,6 +54,11 @@ public class Login extends AppCompatActivity {
             EditText user_pass = findViewById(R.id.lg_editTextPassword);
             String user_pass_string = user_pass.getText().toString();
             int move_to_intent_flag = 0;
+            if(users == null){
+                TextView tv = (TextView)findViewById(R.id.login_error);
+                tv.setText("There are no registered users on the server, or the server is incorrect");
+                return;
+            }
             for(User user:users){
                 String current_user_id = user.getId();
                 String current_user_pass = user.getPassword();
@@ -74,6 +80,14 @@ public class Login extends AppCompatActivity {
         TextView pass_register = findViewById(R.id.lg_pass_register);
         pass_register.setOnClickListener(v->{
             Intent intent = new Intent(this,Register.class);
+            intent.putExtra("user_server",server);
+            startActivity(intent);
+        });
+
+        // pass to the setting screen
+        TextView pass_setting = findViewById(R.id.lg_pass_def);
+        pass_setting.setOnClickListener(v->{
+            Intent intent = new Intent(this,Definitions.class);
             intent.putExtra("user_server",server);
             startActivity(intent);
         });

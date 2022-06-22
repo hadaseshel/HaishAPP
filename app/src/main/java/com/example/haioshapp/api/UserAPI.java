@@ -1,6 +1,7 @@
 package com.example.haioshapp.api;
 
 import com.example.haioshapp.entities.Contact;
+import com.example.haioshapp.entities.Message;
 import com.example.haioshapp.entities.User;
 
 import java.util.List;
@@ -61,7 +62,22 @@ public class UserAPI {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                // in fail
+            }
+        });
+    }
+
+    public void createdMessage(String user, String contactId, Message message){
+        Call<Void> call = webServiceAPI.createMessage(user,contactId,message);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 // in response
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                // in fail
             }
         });
     }

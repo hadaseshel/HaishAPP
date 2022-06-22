@@ -122,6 +122,15 @@
             android:textStyle="italic"
             android:layout_margin="10dp"
             android:typeface="serif" />
+        <TextView
+            android:id="@+id/lg_pass_def"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/lg_click_here_to_change_the_app_settings"
+            android:textSize="18dp"
+            android:layout_margin="10dp"
+            android:typeface="serif" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

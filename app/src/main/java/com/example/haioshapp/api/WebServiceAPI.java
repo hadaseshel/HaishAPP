@@ -28,6 +28,9 @@ public interface WebServiceAPI {
 
     @GET("contacts/{id}/messages")
     Call<List<Message>> getMessages(@Path(value="id") String id,@Query("user") String user);
+
+    @POST("contacts/{id}/messages")
+    Call<Void> createMessage(@Path(value="id") String id,@Query("user") String user,@Body Message message);
 }
 
 
