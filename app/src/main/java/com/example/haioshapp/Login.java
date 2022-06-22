@@ -21,6 +21,7 @@ public class Login extends AppCompatActivity {
     // this link may be useful
     //https://www.youtube.com/watch?v=sOJRJtM_iu0
     private List<User> users;
+    private String server = "10.0.2.2:5034";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // get the users from the server
-        UserAPI userAPI = new UserAPI();
+        UserAPI userAPI = new UserAPI(server);
         Call<List<User>> call = userAPI.webServiceAPI.getUsers();
         call.enqueue(new Callback<List<User>>() {
             @Override
@@ -48,7 +49,7 @@ public class Login extends AppCompatActivity {
             EditText user_id = findViewById(R.id.lg_username_editText);
             String user_id_string = user_id.getText().toString();
             intent.putExtra("user_id",user_id_string);
-            intent.putExtra("user_server","10.0.2.2:5034");
+            intent.putExtra("user_server",server);
             EditText user_pass = findViewById(R.id.lg_editTextPassword);
             String user_pass_string = user_pass.getText().toString();
             int move_to_intent_flag = 0;
@@ -73,6 +74,7 @@ public class Login extends AppCompatActivity {
         TextView pass_register = findViewById(R.id.lg_pass_register);
         pass_register.setOnClickListener(v->{
             Intent intent = new Intent(this,Register.class);
+            intent.putExtra("user_server",server);
             startActivity(intent);
         });
     }

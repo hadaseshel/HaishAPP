@@ -15,6 +15,10 @@ import com.example.haioshapp.rooms.ContactsDao;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class NewChat extends AppCompatActivity {
     private AppDB db; // the DB of the app
     private ContactsDao contactsDao; // by this object we will add contact
@@ -33,7 +37,7 @@ public class NewChat extends AppCompatActivity {
         contactsDao = db.contactsDao();
         userId = getIntent().getExtras().getString("user_id");
         userServer = getIntent().getExtras().getString("user_server");
-        userAPI = new UserAPI();
+        userAPI = new UserAPI(userServer);
 
         Button btn_new_chat = findViewById(R.id.new_chat_button);
         btn_new_chat.setOnClickListener(v-> {
@@ -66,17 +70,24 @@ public class NewChat extends AppCompatActivity {
             // post contact server
             Contact me_as_contacts = new Contact(userId, userId, userServer);
             otherAPI = new OtherServerApi(contact_server.getText().toString());
-            otherAPI.invitations(contact_for_server.getId(),me_as_contacts);
-            // if the contacts doesnot exist on the server
-//            if(otherAPI.flag==0){
-//                tv.setText("The contact does not exist on the server you entered");
-//                return;
-//            }
-            // post my server
-            userAPI.createContact(userId,contact_for_server);
-            contactsDao.insert(contact); //insert the contact to the room
-            tv.setText("");
-            finish();
+            Call<Void> call = otherAPI.webServiceAPI.createContact(contact_for_server.getId(),me_as_contacts);
+            call.enqueue(new Callback<Void>() {
+                // if the incitation part sucsess
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    // post my server
+                    userAPI.createContact(userId,contact_for_server);
+                    contactsDao.insert(contact); //insert the contact to the room
+                    tv.setText("");
+                    finish();
+                }
+
+                // if cant to the invitation part
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    tv.setText("The contact does not exist on the server you entered");
+                }
+            });
             });
     }
 }

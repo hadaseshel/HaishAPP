@@ -16,6 +16,7 @@ public class Contact {
     private String userId;
     private String name;
     private String server;
+    private String userServer;
     private String last;
     private String lastdate;
     private String image;
@@ -29,6 +30,7 @@ public class Contact {
         this.name =null;
         this.server = null;
         this.last = null;
+        this.userServer=null;
         this.lastdate = null;
         this.image = null;
         this.chat = null;
@@ -40,6 +42,7 @@ public class Contact {
         this.userId = null;
         this.name = name;
         this.server = server;
+        this.userServer=null;
         this.last = null;
         this.lastdate = null;
         this.image = null;
@@ -50,6 +53,7 @@ public class Contact {
         this.id = id;
         this.contactId = null;
         this.userId = null;
+        this.userServer=null;
         this.name = name;
         this.server = server;
         this.last = last;
@@ -61,6 +65,7 @@ public class Contact {
     public Contact(String id,String contactId, String userId, String name, String server) {
         this.id = id;
         this.contactId = contactId;
+        this.userServer=null;
         this.userId = userId;
         this.name = name;
         this.server = server;
@@ -77,6 +82,7 @@ public class Contact {
         this.server = server;
         this.last = last;
         this.lastdate = lastdate;
+        this.userServer=null;
     }
 
     public String getId() {
@@ -162,5 +168,13 @@ public class Contact {
 
     public void setChat(List<Message> chat) {
         this.chat = chat;
+    }
+
+    public String getUserServer() {
+        return userServer;
+    }
+
+    public void setUserServer(String userServer) {
+        this.userServer = userServer;
     }
 }

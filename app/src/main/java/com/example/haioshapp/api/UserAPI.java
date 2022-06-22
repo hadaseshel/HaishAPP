@@ -1,7 +1,5 @@
 package com.example.haioshapp.api;
 
-import com.example.haioshapp.MyAPP;
-import com.example.haioshapp.R;
 import com.example.haioshapp.entities.Contact;
 import com.example.haioshapp.entities.User;
 
@@ -17,9 +15,10 @@ public class UserAPI {
     public Retrofit retrofit;
     public WebServiceAPI webServiceAPI;
 
-    public UserAPI(){
+    public UserAPI(String urlServer){
+        urlServer.replace("localhost","10.0.2.2");
         retrofit = new Retrofit.Builder()
-                .baseUrl(MyAPP.context.getString(R.string.BaseUrl))
+                .baseUrl("http://"+urlServer+"/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         webServiceAPI = retrofit.create(WebServiceAPI.class);

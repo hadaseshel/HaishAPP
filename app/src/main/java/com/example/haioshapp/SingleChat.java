@@ -2,6 +2,7 @@ package com.example.haioshapp;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ public class SingleChat extends AppCompatActivity {
     private Context context = this;
     private String userId;
     private String contactId;
+    private String server;
     private UserAPI userAPI;
     private AppDB db; // the DB of the app
     private MessagesDao messagesDao; // by this object we will add contact
@@ -44,10 +46,14 @@ public class SingleChat extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); //bind the recycle view a view
         contactId = getIntent().getExtras().getString("contact_id");
         userId = getIntent().getExtras().getString("user_id");
-//        //messagesDao.deleteAll(); //delet all
+        server = getIntent().getExtras().getString("user_server");
+        String contactNickName = getIntent().getExtras().getString("contact_name");
+
+        TextView tvOfTitel = findViewById(R.id.single_chat_title);
+        tvOfTitel.setText(contactNickName);
 
         // get messages
-        userAPI = new UserAPI();
+        userAPI = new UserAPI(server);
         Call<List<Message>> call = userAPI.webServiceAPI.getMessages(contactId,userId);
         call.enqueue(new Callback<List<Message>>() {
             @Override

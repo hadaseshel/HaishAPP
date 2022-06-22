@@ -25,4 +25,6 @@
     <string name="register_upload_a_photo">Upload a photo</string>
     <string name="register_upload_image">Upload</string>
     <string name="BaseUrl">http://10.0.2.2:5034/api/</string>
+    <string name="def_url_server">URL Server:</string>
+    <string name="def_update_url_server">Update URL Server</string>
 </resources>

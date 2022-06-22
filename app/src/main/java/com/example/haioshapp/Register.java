@@ -25,14 +25,16 @@ public class Register extends AppCompatActivity {
     private final int GALLERY_REQ_CODE = 1000;
     private ImageView imageView;
     private List<User> users;
+    private String server;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        server = getIntent().getExtras().getString("user_server");
 
         // get the users from the server
-        UserAPI userAPI = new UserAPI();
+        UserAPI userAPI = new UserAPI(server);
         Call<List<User>> call = userAPI.webServiceAPI.getUsers();
         call.enqueue(new Callback<List<User>>() {
             @Override
@@ -59,7 +61,7 @@ public class Register extends AppCompatActivity {
             String user_name_string = user_name.getText().toString();
 
             intent.putExtra("user_id",user_id_string);
-            intent.putExtra("user_server","10.0.2.2:5034");
+            intent.putExtra("user_server",server);
             // check password identical to confirm
             if(!user_pass_string.equals(user_pass_conf_string)){
                 TextView tv = (TextView)findViewById(R.id.register_error);

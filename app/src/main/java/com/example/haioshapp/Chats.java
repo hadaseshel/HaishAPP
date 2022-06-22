@@ -27,6 +27,7 @@ public class Chats extends AppCompatActivity {
     List<Contact> contacts; // the contacts list
     List<Contact> contacts_from_server;
     private String userID;
+    private String server;
     private AppDB db; // the DB of the app
     private ContactsDao contactsDao; // by this object we will add contact
     ContactListAdapter adapter; // adapter for the spacial view of each contact
@@ -37,11 +38,12 @@ public class Chats extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chats);
         userID = getIntent().getExtras().getString("user_id");
+        server = getIntent().getExtras().getString("user_server");
         db = AppDB.getDB(this);
         contactsDao = db.contactsDao();
 
         // get users
-        UserAPI userAPI = new UserAPI();
+        UserAPI userAPI = new UserAPI(server);
         Call<List<Contact>> call = userAPI.webServiceAPI.getContacts(userID);
         call.enqueue(new Callback<List<Contact>>() {
             @Override
@@ -64,6 +66,7 @@ public class Chats extends AppCompatActivity {
                     new_contact.setLastdate(contact.getLastdate());
                     new_contact.setUserId(userID);
                     new_contact.setId(userID +contact.getId());
+                    new_contact.setUserServer(server);
                     contactsDao.insert(new_contact);
                 }
                 // get the contacts list
@@ -90,7 +93,7 @@ public class Chats extends AppCompatActivity {
         btn_add_chat.setOnClickListener(v->{
             Intent intent = new Intent(this,NewChat.class);
             intent.putExtra("user_id",userID);
-            intent.putExtra("user_server","10.0.2.2:5034");
+            intent.putExtra("user_server",server);
             startActivity(intent);
         });
     }

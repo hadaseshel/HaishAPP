@@ -26,27 +26,52 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="20dp">
-                <RelativeLayout
+
+                <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@color/green"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/textView4"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:typeface="serif"
+                        android:layout_margin="16dp"
+                        app:srcCompat="@drawable/ic_avatar" />
+
+                    <TextView
+                        android:id="@+id/single_chat_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="name of chat"
                         android:textColor="@color/purple_3"
                         android:textSize="26sp"
                         android:textStyle="bold"
-                        android:text="name of chat" />
-                </RelativeLayout>
+                        android:typeface="serif" />
+                </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/singlechat_recyclerView"
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-        </LinearLayout>
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/singlechat_recyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
