@@ -48,7 +48,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         if(messages!=null){
             final Message current = messages.get(position);
             holder.tvMessage.setText(current.getContent());
-            holder.tvDate.setText(current.getDatecreate());
+            holder.tvDate.setText(current.getCreated());
         }
     }
 

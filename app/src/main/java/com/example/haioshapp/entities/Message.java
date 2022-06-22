@@ -2,6 +2,7 @@ package com.example.haioshapp.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -11,16 +12,18 @@ public class Message {
     private String id;
     private String contactKey;
     private String content;
-    private String datecreate;
+    private String created;
+    @Ignore
+    private String type;
     private boolean sent;
 
-
-    public Message(String id,String contactKey, String content, String datecreate, boolean sent) {
+    public Message(String id,String contactKey, String content, String created, boolean sent) {
         this.id = id;
         this.contactKey = contactKey;
         this.content = content;
-        this.datecreate = datecreate;
+        this.created = created;
         this.sent = sent;
+        this.type = null;
     }
 
     public String getId() {
@@ -47,12 +50,12 @@ public class Message {
         this.content = content;
     }
 
-    public String getDatecreate() {
-        return datecreate;
+    public String getCreated() {
+        return created;
     }
 
-    public void setDatecreate(String datecreate) {
-        this.datecreate = datecreate;
+    public void setCreated(String created) {
+        this.created = created;
     }
 
     public boolean isSent() {
@@ -69,7 +72,7 @@ public class Message {
                 "id='" + id + '\'' +
                 ", contactKey='" + contactKey + '\'' +
                 ", content='" + content + '\'' +
-                ", datecreate='" + datecreate + '\'' +
+                ", datecreate='" + created + '\'' +
                 ", sent=" + sent +
                 '}';
     }

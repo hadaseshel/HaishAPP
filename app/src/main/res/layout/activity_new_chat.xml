@@ -118,6 +118,16 @@
             android:text="@string/new_chat_add_a_contact"
             android:textSize="22dp"
             android:typeface="serif" />
+        <TextView
+            android:id="@+id/new_chat_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=" "
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/deep_orange_variant"
+            android:typeface="serif" />
 
     </LinearLayout>
 

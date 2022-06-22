@@ -1,5 +1,6 @@
 package com.example.haioshapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -22,6 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Chats extends AppCompatActivity {
+    Context context = this;
     List<Contact> contacts; // the contacts list
     List<Contact> contacts_from_server;
     private String userID;
@@ -38,13 +40,7 @@ public class Chats extends AppCompatActivity {
         db = AppDB.getDB(this);
         contactsDao = db.contactsDao();
 
-
-        // insert to the room contacts
-//        contactsDao.insert(new Contact("aaa","aaa","server1","hey","15.12.22"));
-//        contactsDao.insert(new Contact("bbb","bbb","server1","baaa","16.12.22"));
-//        contactsDao.insert(new Contact("ccc","ccc","server1","loo","17.12.22"));
-        // delete the contacts list from DB
-       //contactsDao.deleteAll();
+        // get users
         UserAPI userAPI = new UserAPI();
         Call<List<Contact>> call = userAPI.webServiceAPI.getContacts(userID);
         call.enqueue(new Callback<List<Contact>>() {
@@ -73,7 +69,7 @@ public class Chats extends AppCompatActivity {
                 // get the contacts list
                 contacts = contactsDao.getContactOfUser(userID);
                 // create adapter
-                adapter = new ContactListAdapter(Chats.this);
+                adapter = new ContactListAdapter(context);
                 // set the list on the adapter
                 adapter.setContacts(contacts);
                 // set the adapter on the recycle view
@@ -94,6 +90,7 @@ public class Chats extends AppCompatActivity {
         btn_add_chat.setOnClickListener(v->{
             Intent intent = new Intent(this,NewChat.class);
             intent.putExtra("user_id",userID);
+            intent.putExtra("user_server","10.0.2.2:5034");
             startActivity(intent);
         });
     }

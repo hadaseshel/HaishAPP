@@ -59,6 +59,7 @@ public class Register extends AppCompatActivity {
             String user_name_string = user_name.getText().toString();
 
             intent.putExtra("user_id",user_id_string);
+            intent.putExtra("user_server","10.0.2.2:5034");
             // check password identical to confirm
             if(!user_pass_string.equals(user_pass_conf_string)){
                 TextView tv = (TextView)findViewById(R.id.register_error);
@@ -86,7 +87,7 @@ public class Register extends AppCompatActivity {
             TextView tv = (TextView)findViewById(R.id.register_error);
             tv.setText("");
             User user = new User(user_id_string,user_name_string,user_pass_string,"http://localhost:5034/");
-            userAPI.post(user);
+            userAPI.createUser(user);
             startActivity(intent);
         });
 

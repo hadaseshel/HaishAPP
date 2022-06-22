@@ -48,6 +48,7 @@ public class Login extends AppCompatActivity {
             EditText user_id = findViewById(R.id.lg_username_editText);
             String user_id_string = user_id.getText().toString();
             intent.putExtra("user_id",user_id_string);
+            intent.putExtra("user_server","10.0.2.2:5034");
             EditText user_pass = findViewById(R.id.lg_editTextPassword);
             String user_pass_string = user_pass.getText().toString();
             int move_to_intent_flag = 0;

@@ -34,6 +34,18 @@ public class Contact {
         this.chat = null;
     }
     @Ignore
+    public Contact(String id, String name, String server){
+        this.id = id;
+        this.contactId = null;
+        this.userId = null;
+        this.name = name;
+        this.server = server;
+        this.last = null;
+        this.lastdate = null;
+        this.image = null;
+        this.chat = null;
+    }
+    @Ignore
     public Contact(String id, String name, String server,String last, String lastdate,String image,List<Message> chat) {
         this.id = id;
         this.contactId = null;

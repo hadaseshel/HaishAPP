@@ -1,6 +1,7 @@
 package com.example.haioshapp.api;
 
 import com.example.haioshapp.entities.Contact;
+import com.example.haioshapp.entities.Message;
 import com.example.haioshapp.entities.User;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface WebServiceAPI {
@@ -20,4 +22,12 @@ public interface WebServiceAPI {
 
     @GET("contacts")
     Call<List<Contact>> getContacts(@Query("user") String user);
+
+    @POST("contacts")
+    Call<Void> createContact(@Query("user") String user,@Body Contact contact);
+
+    @GET("contacts/{id}/messages")
+    Call<List<Message>> getMessages(@Path(value="id") String id,@Query("user") String user);
 }
+
+
