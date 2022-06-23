@@ -57,6 +57,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
                     intent.putExtra("contact_id",current.getContactId());
                     intent.putExtra("contact_name",current.getName());
                     intent.putExtra("user_server",current.getUserServer());
+                    intent.putExtra("contact_server",current.getServer());
                     v.getContext().startActivity(intent);
                 }
             });

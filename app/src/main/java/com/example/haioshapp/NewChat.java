@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.haioshapp.api.OtherServerApi;
 import com.example.haioshapp.api.UserAPI;
 import com.example.haioshapp.entities.Contact;
+import com.example.haioshapp.entities.Invitations;
 import com.example.haioshapp.rooms.AppDB;
 import com.example.haioshapp.rooms.ContactsDao;
 
@@ -68,9 +69,8 @@ public class NewChat extends AppCompatActivity {
             }
 
             // post contact server
-            Contact me_as_contacts = new Contact(userId, userId, userServer);
             otherAPI = new OtherServerApi(contact_server.getText().toString());
-            Call<Void> call = otherAPI.webServiceAPI.createContact(contact_for_server.getId(),me_as_contacts);
+            Call<Void> call = otherAPI.webServiceAPI.createContactInvet(new Invitations(userId,contact_name.getText().toString(),userServer));
             call.enqueue(new Callback<Void>() {
                 // if the incitation part sucsess
                 @Override

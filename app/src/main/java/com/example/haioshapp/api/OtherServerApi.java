@@ -13,9 +13,9 @@ public class OtherServerApi {
     public WebServiceAPI webServiceAPI;
 
     public OtherServerApi(String urlServer) {
-        urlServer.replace("localhost","10.0.2.2");
+        String url_proper = urlServer.replace("localhost","10.0.2.2");
         this.retrofit =  new Retrofit.Builder()
-                .baseUrl("http://"+urlServer+"/api/")
+                .baseUrl("http://"+url_proper+"/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         this.webServiceAPI = retrofit.create(WebServiceAPI.class);

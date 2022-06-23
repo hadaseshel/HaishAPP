@@ -78,7 +78,7 @@
             android:background="@color/purple_3_light_more">
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/single_chat_ed_send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -92,10 +92,11 @@
                 android:typeface="serif"
                 tools:ignore="TouchTargetSizeCheck" />
 
-            <ImageView
-                android:id="@+id/imageView2"
+            <ImageButton
+                android:id="@+id/single_chat_send_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/purple_3_light_more"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"

@@ -49,19 +49,6 @@ public class Contact {
         this.chat = null;
     }
     @Ignore
-    public Contact(String id, String name, String server,String last, String lastdate,String image,List<Message> chat) {
-        this.id = id;
-        this.contactId = null;
-        this.userId = null;
-        this.userServer=null;
-        this.name = name;
-        this.server = server;
-        this.last = last;
-        this.lastdate = lastdate;
-        this.image = image;
-        this.chat = chat;
-    }
-    @Ignore
     public Contact(String id,String contactId, String userId, String name, String server) {
         this.id = id;
         this.contactId = contactId;
@@ -71,18 +58,6 @@ public class Contact {
         this.server = server;
         this.last = null;
         this.lastdate = null;
-    }
-
-    @Ignore
-    public Contact(@NonNull String id, String contactId, String userId, String name, String server, String last, String lastdate) {
-        this.id = id;
-        this.contactId = contactId;
-        this.userId = userId;
-        this.name = name;
-        this.server = server;
-        this.last = last;
-        this.lastdate = lastdate;
-        this.userServer=null;
     }
 
     public String getId() {

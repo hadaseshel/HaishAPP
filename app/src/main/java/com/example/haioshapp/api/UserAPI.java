@@ -17,9 +17,9 @@ public class UserAPI {
     public WebServiceAPI webServiceAPI;
 
     public UserAPI(String urlServer){
-        urlServer.replace("localhost","10.0.2.2");
+        String url_proper = urlServer.replace("localhost","10.0.2.2");
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://"+urlServer+"/api/")
+                .baseUrl("http://"+url_proper+"/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         webServiceAPI = retrofit.create(WebServiceAPI.class);
@@ -67,8 +67,8 @@ public class UserAPI {
         });
     }
 
-    public void createdMessage(String user, String contactId, Message message){
-        Call<Void> call = webServiceAPI.createMessage(user,contactId,message);
+    public void createdMessage(String contactId,String user, Message message){
+        Call<Void> call = webServiceAPI.createMessage(contactId,user,message);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

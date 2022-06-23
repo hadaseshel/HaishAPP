@@ -1,7 +1,9 @@
 package com.example.haioshapp.api;
 
 import com.example.haioshapp.entities.Contact;
+import com.example.haioshapp.entities.Invitations;
 import com.example.haioshapp.entities.Message;
+import com.example.haioshapp.entities.Transfer;
 import com.example.haioshapp.entities.User;
 
 import java.util.List;
@@ -25,6 +27,12 @@ public interface WebServiceAPI {
 
     @POST("contacts")
     Call<Void> createContact(@Query("user") String user,@Body Contact contact);
+
+    @POST("invitations")
+    Call<Void> createContactInvet(@Body Invitations invitations);
+
+    @POST("transfer")
+    Call<Void> createMessageTransfer(@Body Transfer transfer);
 
     @GET("contacts/{id}/messages")
     Call<List<Message>> getMessages(@Path(value="id") String id,@Query("user") String user);
